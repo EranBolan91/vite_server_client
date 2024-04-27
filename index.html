@@ -8,16 +8,19 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app">
-      <div id="hero" class="absolute top-0 left-0"></div>
+    <div id="app" class="h-screen flex flex-col">
       <section>
+        <div id="hero"></div>
+      </section>
+      <section class="flex justify-center">
         <div
           id="mainContent"
-          class="absolute top-1/2 left-1/2 w-4/5 md:w-1/2 h-full bottom-3 bg-slate-50 shadow-md rounded"
+          style="height: 90vh; margin-top: -20rem"
+          class="w-4/5 md:w-3/5 bottom-3 bg-slate-50 shadow-md rounded"
         >
           <img
             class="absolute w-40"
-            style="left: 40%; bottom: 90%"
+            style="left: 45%; bottom: 67%"
             src="https://raisely-images.imgix.net/un-crisis-relief/uploads/un-logo-paper-png-e712b2.png?fit=max&w=1024&auto=format&q=62"
           />
           <div class="flex flex-col p-6 mt-20 items-center">
@@ -107,7 +110,12 @@
         </div>
       </section>
 
-      <div id="about"></div>
+      <section class="pt-6 text-black">
+        <div id="about" class="flex justify-center"></div>
+      </section>
+      <section class="pt-6 text-black">
+        <div id="links" class="flex justify-center"></div>
+      </section>
     </div>
     <script type="module" src="/src/client/main.ts"></script>
     <script type="module" src="/src/client/javascript/slider.ts"></script>
