@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="hero" class="absolute top-0 left-0"></div>
+      <section>
+        <div
+          id="mainContent"
+          class="absolute top-1/2 left-1/2 w-4/5 md:w-1/2 h-full bottom-3 bg-slate-50 shadow-md rounded"
+        >
+          <img
+            class="absolute w-40"
+            style="left: 40%; bottom: 90%"
+            src="https://raisely-images.imgix.net/un-crisis-relief/uploads/un-logo-paper-png-e712b2.png?fit=max&w=1024&auto=format&q=62"
+          />
+          <div class="flex flex-col p-6 mt-20 items-center">
+            <span
+              class="text-black font-medium text-center text-4xl leading-5"
+              style="font-family: Roborto Slab"
+              >Help the people of Gaza</span
+            >
+            <p
+              class="text-black text-center text-lg leading-10 tracking-wider mt-6 w-3/4"
+            >
+              Civilians are paying a horrific price for the ongoing war. Over 3
+              million people in the Gaza Strip and the West Bank need urgent
+              humanitarian aid and protection. You can help families caught up
+              in this catastrophic situation.
+            </p>
+            <div
+              class="container border w-3/4 flex justify-center flex-col items-center rounded-md p-2"
+            >
+              <div id="slider" class="w-full"></div>
+              <div class="flex flex-col justify-start items-center w-full">
+                <div role="tablist" class="tabs tabs-boxed">
+                  <a role="tab" class="tab tab-active">One-time</a>
+                  <a role="tab" class="tab">Weekly</a>
+                  <a role="tab" class="tab">Monthly</a>
+                </div>
+                <h2 class="text-black text-4xl font-medium mt-6">HELP US</h2>
+                <div class="grid grid-cols-2 gap-2 w-full mt-5 p-2">
+                  <button
+                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                  >
+                    60
+                  </button>
+                  <button
+                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                  >
+                    180
+                  </button>
+                  <button
+                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                  >
+                    360
+                  </button>
+                  <button
+                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                  >
+                    540
+                  </button>
+                </div>
+                <div class="w-full p-2">
+                  <input
+                    type="text"
+                    placeholder="Type here"
+                    class="input input-bordered w-full"
+                  />
+                </div>
+                <div class="p-2 w-full">
+                  <button id="next" class="btn btn-block btn-primary">
+                    Next
+                  </button>
+                  <div class="grid grid-cols-5 place-items-center p-2">
+                    <img
+                      class="w-20"
+                      src="https://admin.raisely.com/public/donations/donationv3/applepay.png"
+                    />
+                    <img
+                      class="w-20"
+                      src="https://admin.raisely.com/public/donations/donationv3/gpay.png"
+                    />
+                    <img
+                      class="w-20"
+                      src="https://admin.raisely.com/public/donations/donationv3/visa.png"
+                    />
+                    <img
+                      class="w-20"
+                      src="https://admin.raisely.com/public/donations/donationv3/mastercard.png"
+                    />
+                    <img
+                      class="w-20"
+                      src="https://admin.raisely.com/public/donations/donationv3/americanexpress.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="about"></div>
+    </div>
+    <script type="module" src="/src/client/main.ts"></script>
+    <script type="module" src="/src/client/javascript/slider.ts"></script>
+    <script type="module" src="/src/client/javascript/about.ts"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+  </body>
+</html>
