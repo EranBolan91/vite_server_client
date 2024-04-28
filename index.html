@@ -12,7 +12,7 @@
       <section>
         <div id="hero"></div>
       </section>
-      <section class="flex justify-center">
+      <section class="flex justify-center pb-2">
         <div
           id="mainContent"
           style="height: 90vh; margin-top: -20rem"
@@ -37,71 +37,73 @@
               humanitarian aid and protection. You can help families caught up
               in this catastrophic situation.
             </p>
-            <div
-              class="container border w-3/4 flex justify-center flex-col items-center rounded-md p-2"
-            >
-              <div id="slider" class="w-full"></div>
-              <div class="flex flex-col justify-start items-center w-full">
-                <div role="tablist" class="tabs tabs-boxed">
-                  <a role="tab" class="tab tab-active">One-time</a>
-                  <a role="tab" class="tab">Weekly</a>
-                  <a role="tab" class="tab">Monthly</a>
-                </div>
-                <h2 class="text-black text-4xl font-medium mt-6">HELP US</h2>
-                <div class="grid grid-cols-2 gap-2 w-full mt-5 p-2">
-                  <button
-                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                  >
-                    60
-                  </button>
-                  <button
-                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                  >
-                    180
-                  </button>
-                  <button
-                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                  >
-                    360
-                  </button>
-                  <button
-                    class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                  >
-                    540
-                  </button>
-                </div>
-                <div class="w-full p-2">
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    class="input input-bordered w-full"
-                  />
-                </div>
-                <div class="p-2 w-full">
-                  <button id="next" class="btn btn-block btn-primary">
-                    Next
-                  </button>
-                  <div class="grid grid-cols-5 place-items-center p-2">
-                    <img
-                      class="w-20"
-                      src="https://admin.raisely.com/public/donations/donationv3/applepay.png"
+            <div id="donateStage" class="w-full flex justify-center">
+              <div
+                class="container border w-3/4 flex justify-center flex-col items-center rounded-md p-2"
+              >
+                <div id="slider" class="w-full"></div>
+                <div class="flex flex-col justify-start items-center w-full">
+                  <div role="tablist" class="tabs tabs-boxed">
+                    <a role="tab" class="tab tab-active">One-time</a>
+                    <a role="tab" class="tab">Weekly</a>
+                    <a role="tab" class="tab">Monthly</a>
+                  </div>
+                  <h2 class="text-black text-4xl font-medium mt-6">HELP US</h2>
+                  <div class="grid grid-cols-2 gap-2 w-full mt-5 p-2">
+                    <button
+                      class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                    >
+                      60
+                    </button>
+                    <button
+                      class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                    >
+                      180
+                    </button>
+                    <button
+                      class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                    >
+                      360
+                    </button>
+                    <button
+                      class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                    >
+                      540
+                    </button>
+                  </div>
+                  <div class="w-full p-2">
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      class="input input-bordered w-full"
                     />
-                    <img
-                      class="w-20"
-                      src="https://admin.raisely.com/public/donations/donationv3/gpay.png"
-                    />
-                    <img
-                      class="w-20"
-                      src="https://admin.raisely.com/public/donations/donationv3/visa.png"
-                    />
-                    <img
-                      class="w-20"
-                      src="https://admin.raisely.com/public/donations/donationv3/mastercard.png"
-                    />
-                    <img
-                      class="w-20"
-                      src="https://admin.raisely.com/public/donations/donationv3/americanexpress.png"
-                    />
+                  </div>
+                  <div class="p-2 w-full">
+                    <button id="next" class="btn btn-block btn-primary">
+                      Next
+                    </button>
+                    <div class="grid grid-cols-5 place-items-center p-2">
+                      <img
+                        class="w-20"
+                        src="https://admin.raisely.com/public/donations/donationv3/applepay.png"
+                      />
+                      <img
+                        class="w-20"
+                        src="https://admin.raisely.com/public/donations/donationv3/gpay.png"
+                      />
+                      <img
+                        class="w-20"
+                        src="https://admin.raisely.com/public/donations/donationv3/visa.png"
+                      />
+                      <img
+                        class="w-20"
+                        src="https://admin.raisely.com/public/donations/donationv3/mastercard.png"
+                      />
+                      <img
+                        class="w-20"
+                        src="https://admin.raisely.com/public/donations/donationv3/americanexpress.png"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -120,6 +122,7 @@
     <script type="module" src="/src/client/main.ts"></script>
     <script type="module" src="/src/client/javascript/slider.ts"></script>
     <script type="module" src="/src/client/javascript/about.ts"></script>
+    <script type="module" src="/src/client/javascript/links.ts"></script>
     <script src="https://js.stripe.com/v3/"></script>
   </body>
 </html>

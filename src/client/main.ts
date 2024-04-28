@@ -111,3 +111,5 @@ window.onload = async () => {
     addFormEventListener(elements);
   }
 };
+
+document.getElementById("next")?.addEventListener("click", () => {});

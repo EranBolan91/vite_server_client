@@ -26,7 +26,10 @@ app.use(
   })
 );
 
-app.get("/", (_, res) => {
+app.get("/", async (_, res) => {
+  // await stripe.currency.list().then((currency: any) => {
+  //   console.log(currency);
+  // });
   const path = resolve("index.html");
   res.sendFile(path);
 });
