@@ -112,4 +112,10 @@ window.onload = async () => {
   }
 };
 
-document.getElementById("next")?.addEventListener("click", () => {});
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("next")?.addEventListener("click", () => {
+    console.log("clicked");
+    const donateStage = document.getElementById("donateStage") as HTMLElement;
+    donateStage.style.display = "none";
+  });
+});

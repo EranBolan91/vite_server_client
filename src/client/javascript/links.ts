@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const links = document.getElementById("links");
   links?.insertAdjacentHTML(
     "afterbegin",
-    `<div class="flex flex-col w-3/5 shadow-md rounded p-7 mb-8">
+    `<div class="flex flex-col w- md:w-3/5 shadow-md rounded p-7 mb-8">
         <h1 class="text-lg font-medium text-center">Want to maximize your contribution? Share the campaign:</h1>
-        <div class="flex justify-between w-1/2 m-auto p-3">
+        <div class="flex justify-between w-full md:w-1/2 m-auto p-3">
             <a href="#!" role="button">
             <!-- Facebook -->
                 <span class="[&>svg]:h-7 [&>svg]:w-6 [&>svg]:fill-[#1877f2] flex items-center">
