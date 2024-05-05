@@ -4,6 +4,19 @@ const { resolve } = require("path");
 require("dotenv").config({ path: ".env" });
 const app = express();
 
+const paypal = require("@paypal/checkout-server-sdk");
+const Environment =
+  process.env.NODE_ENV === "production"
+    ? paypal.core.LiveEnvironment
+    : paypal.core.SandboxEnvironment;
+
+const paypalClient = new paypal.core.PayPalHttpClient(
+  new Environment(
+    process.env.PAYPAL_CLIENT_ID,
+    process.env.PAYPAL_CLIENT_SECRET
+  )
+);
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2020-08-27",
   appInfo: {
@@ -27,9 +40,6 @@ app.use(
 );
 
 app.get("/", async (_, res) => {
-  // await stripe.currency.list().then((currency: any) => {
-  //   console.log(currency);
-  // });
   const path = resolve("index.html");
   res.sendFile(path);
 });
@@ -55,6 +65,54 @@ app.post("/create-payment-intent", async (req, res) => {
   } catch (err: any) {
     console.log("Error:", err);
     res.status(400).json({ error: { message: err.message } });
+  }
+});
+
+const storeItems = new Map([
+  [1, { price: 100, name: "Learn React Today" }],
+  [2, { price: 200, name: "Learn CSS Today" }],
+]);
+
+app.post("/create-order", async (req, res) => {
+  const request = new paypal.orders.OrdersCreateRequest();
+  const total = req.body.items.reduce((sum: any, item: any) => {
+    return sum + storeItems.get(item.id).price * item.quantity;
+  }, 0);
+  request.prefer("return=representation");
+  request.requestBody({
+    intent: "CAPTURE",
+    purchase_units: [
+      {
+        amount: {
+          currency_code: "USD",
+          value: total,
+          breakdown: {
+            item_total: {
+              currency_code: "USD",
+              value: total,
+            },
+          },
+        },
+        items: req.body.items.map((item: any) => {
+          const storeItem = storeItems.get(item.id);
+          return {
+            name: storeItem?.name,
+            unit_amount: {
+              currency_code: "USD",
+              value: storeItem?.price,
+            },
+            quantity: item.quantity,
+          };
+        }),
+      },
+    ],
+  });
+
+  try {
+    const order = await paypalClient.execute(request);
+    res.json({ id: order.result.id });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
   }
 });
 

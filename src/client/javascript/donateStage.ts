@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "afterbegin",
     `<div
         id="donateStage"
-        class="w-full  justify-center flex-col items-center hidden"
+        class="w-full  justify-center flex-col items-center flex"
       >
         <div id="slider" class="w-full text-center"></div>
         <div class="flex flex-col justify-start items-center w-full">
@@ -83,5 +83,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     donateStage.classList.remove("flex");
   });
 
-  //   document.querySelectorAll(".tab").ad
+  const tabs = document.getElementsByClassName(
+    "tab"
+  ) as HTMLCollectionOf<HTMLElement>;
+
+  const tabsArray = Array.from(tabs);
+
+  tabsArray.forEach((tab: Element) => {
+    tab.addEventListener("click", () => {
+      tabsArray.forEach((tab: Element) => {
+        tab.classList.remove("tab-active");
+      });
+      tab.classList.add("tab-active");
+    });
+  });
 });

@@ -1,3 +1,5 @@
+import { IS_PAYMENT_CREATED, insertPaypalPayment } from "./paypal";
+
 const REQUIRED = "This field is required";
 
 const displayMessageRequired = (elementID: string) => {
@@ -18,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "afterbegin",
     `<div
         id="userDetails"
-        class="w-full flex justify-center flex-col items-center">
+        class="w-full hidden justify-center flex-col items-center">
         <div class="flex w-full items-start">
             <div id="back" class="flex text-black text-sm cursor-pointer">
                 <svg viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
@@ -64,34 +66,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     const email = document.getElementById("email") as HTMLInputElement;
     let isInputsFilled = true;
 
-    if (firstName.value === "") {
-      displayMessageRequired("firstNameError");
-      isInputsFilled = false;
-    } else {
-      removeMessageRequired("firstNameError");
-    }
+    // if (firstName.value === "") {
+    //   displayMessageRequired("firstNameError");
+    //   isInputsFilled = false;
+    // } else {
+    //   removeMessageRequired("firstNameError");
+    // }
 
-    if (lastName.value === "") {
-      displayMessageRequired("lastNameError");
-      isInputsFilled = false;
-    } else {
-      removeMessageRequired("lastNameError");
-    }
+    // if (lastName.value === "") {
+    //   displayMessageRequired("lastNameError");
+    //   isInputsFilled = false;
+    // } else {
+    //   removeMessageRequired("lastNameError");
+    // }
 
-    if (email.value === "") {
-      displayMessageRequired("emailError");
-      isInputsFilled = false;
-    } else {
-      removeMessageRequired("emailError");
-    }
+    // if (email.value === "") {
+    //   displayMessageRequired("emailError");
+    //   isInputsFilled = false;
+    // } else {
+    //   removeMessageRequired("emailError");
+    // }
 
     if (isInputsFilled === true) {
       const userDetails = document.getElementById("userDetails") as HTMLElement;
       userDetails.classList.add("hidden");
       userDetails.classList.remove("flex");
-      // const donateStage = document.getElementById("donateStage") as HTMLElement;
-      // donateStage.classList.remove("hidden");
-      // donateStage.classList.add("flex");
+
+      const paymentContainer = document.getElementById(
+        "paymentContainer"
+      ) as HTMLElement;
+      paymentContainer.classList.remove("hidden");
+      paymentContainer.classList.add("flex");
+
+      // const paymentContainer = document.getElementById("paymentContainer") as HTMLElement;
+      if (IS_PAYMENT_CREATED === false) {
+        insertPaypalPayment();
+      }
     }
   });
 });
