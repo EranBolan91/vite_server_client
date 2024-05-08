@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  fetch("https://api.ipregistry.co/?key=tryout")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (payload) {
+      console.log(payload.location.country.name + ", " + payload.location.city);
+    });
+
   const formContainer = document.getElementById("formContainer");
   formContainer?.insertAdjacentHTML(
     "afterbegin",
@@ -16,22 +24,26 @@ document.addEventListener("DOMContentLoaded", async () => {
           <h2 class="text-black text-xl md:text-4xl font-medium mt-3 md:mt-6">HELP US</h2>
           <div class="grid grid-cols-2 gap-2 w-full mt-2 md:mt-5 p-2">
             <button
-              class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              class="btn btnDonate btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              value="60"
             >
               60
             </button>
             <button
-              class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              class="btn btnDonate btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              value="180"
             >
               180
             </button>
             <button
-              class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              class="btn btnDonate btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              value="360"
             >
               360
             </button>
             <button
-              class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              class="btn btnDonate btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              value="540"
             >
               540
             </button>
@@ -95,6 +107,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         tab.classList.remove("tab-active");
       });
       tab.classList.add("tab-active");
+    });
+  });
+
+  const btnDonate = document.getElementsByClassName("btnDonate");
+  const btnDonateArray = Array.from(btnDonate);
+
+  btnDonateArray.forEach((button: Element) => {
+    button.addEventListener("click", (e) => {
+      const donationTitle: HTMLElement | null =
+        document.getElementById("donationTitle");
+      if (donationTitle) {
+        donationTitle.innerHTML = `Donating ${
+          (e.target as HTMLButtonElement).value
+        }`;
+      }
+
+      const userDetails = document.getElementById("userDetails") as HTMLElement;
+      userDetails.classList.remove("hidden");
+      userDetails.classList.add("flex");
+      const donateStage = document.getElementById("donateStage") as HTMLElement;
+      donateStage.classList.add("hidden");
+      donateStage.classList.remove("flex");
     });
   });
 });

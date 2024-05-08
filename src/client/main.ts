@@ -1,6 +1,4 @@
 import "./style.css";
-import { StripeElements, loadStripe } from "@stripe/stripe-js";
-
 const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const appearance = {
@@ -117,4 +115,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const donateStage = document.getElementById("donateStage") as HTMLElement;
     donateStage.style.display = "none";
   });
+
+  fetch("https://api.ipregistry.co/?key=tryout")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (payload) {
+      console.log(payload.location.country.name + ", " + payload.location.city);
+    });
 });

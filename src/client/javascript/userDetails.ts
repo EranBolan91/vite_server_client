@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div id="slider" class="w-full text-center"></div>
         </div>
         <div class="w-full flex flex-col justify-center items-center">
-            <div style="border-radius:8px;" class="badge badge-primary badge-sm md:badge-lg p-3 md:p-5 w-32 md:w-96">primary</div>
+            <div id="donationTitle" style="border-radius:8px;" class="badge badge-primary badge-sm md:badge-lg text-sm font-bold p-3 md:p-5 w-56 md:w-96"></div>
             <h3 class="text-black font-bold text-xl md:text-2xl text-center my-4"> YOUR DETAILS </h3>
             <div class="flex flex-col w-full px-3 md:px-10">
                 <input id="firstName" type="text" placeholder="First Name" class="input input-bordered input-sm md:input-md w-full my-2"/>
@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       paymentContainer.classList.remove("hidden");
       paymentContainer.classList.add("flex");
 
-      // const paymentContainer = document.getElementById("paymentContainer") as HTMLElement;
       if (IS_PAYMENT_CREATED === false) {
         insertPaypalPayment();
       }
