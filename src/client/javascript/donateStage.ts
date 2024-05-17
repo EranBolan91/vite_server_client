@@ -1,20 +1,13 @@
+import countryToCurrency, { Currencies, Countries } from "country-to-currency";
+import { changeStep } from "./slider";
 document.addEventListener("DOMContentLoaded", async () => {
-  fetch("https://api.ipregistry.co/?key=tryout")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (payload) {
-      console.log(payload.location.country.name + ", " + payload.location.city);
-    });
-
   const formContainer = document.getElementById("formContainer");
   formContainer?.insertAdjacentHTML(
-    "afterbegin",
+    "beforeend",
     `<div
         id="donateStage"
         class="w-full  justify-center flex-col items-center flex"
       >
-        <div id="slider" class="w-full text-center"></div>
         <div class="flex flex-col justify-start items-center w-full">
           <div role="tablist" class="tabs tabs-boxed tabs-sm md:tabs-md">
             <a role="tab" class="tab text-sm/[0px] md:text-md tab-active">Once</a>
@@ -50,10 +43,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
           <div class="w-full p-2">
             <input
+              id="inputAmount"
               type="number"
               placeholder="Enter custom amount"
               class="input input-bordered input-sm md:input-md w-full"
             />
+            <span id="customAmount" class="text-red-500 italic text-sm hidden"> </span>
           </div>
           <div class="p-2 w-full">
             <button id="next" class="btn btn-block btn-sm md:btn-md btn-primary">
@@ -87,12 +82,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
 
   document.getElementById("next")?.addEventListener("click", () => {
+    const inputAmount = document.getElementById(
+      "inputAmount"
+    ) as HTMLInputElement;
+
+    if (inputAmount.value === "") {
+      const customAmount = document.getElementById(
+        "customAmount"
+      ) as HTMLElement;
+      customAmount.innerHTML = "Please enter an amount";
+      customAmount.classList.remove("hidden");
+      return;
+    }
+    const donationTitle: HTMLElement | null =
+      document.getElementById("donationTitle");
+    if (donationTitle) {
+      donationTitle.innerHTML = `Donating ${inputAmount.value}`;
+    }
+
     const userDetails = document.getElementById("userDetails") as HTMLElement;
     userDetails.classList.remove("hidden");
     userDetails.classList.add("flex");
     const donateStage = document.getElementById("donateStage") as HTMLElement;
     donateStage.classList.add("hidden");
     donateStage.classList.remove("flex");
+    changeStep("1");
+    hideErrorMessage();
   });
 
   const tabs = document.getElementsByClassName(
@@ -129,6 +144,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const donateStage = document.getElementById("donateStage") as HTMLElement;
       donateStage.classList.add("hidden");
       donateStage.classList.remove("flex");
+      changeStep("1");
+      hideErrorMessage();
     });
   });
 });
+
+const hideErrorMessage = () => {
+  const errorMsg = document.getElementById("customAmount") as HTMLElement;
+  if (errorMsg !== null) {
+    errorMsg.classList.add("hidden");
+  }
+};

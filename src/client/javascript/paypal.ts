@@ -1,3 +1,5 @@
+import { changeStep } from "./slider";
+
 export let IS_PAYMENT_CREATED = false;
 
 export const insertPaypalPayment = () => {
@@ -9,7 +11,15 @@ export const insertPaypalPayment = () => {
         shape: "pill",
         height: 40,
         width: 120,
+        label: "pay",
       },
+      message: {
+        amount: 100,
+        color: "black",
+        align: "center",
+        position: "top",
+      },
+      displayOnly: ["vaultable"],
       async createOrder() {
         try {
           const response = await fetch("/create-order", {
@@ -112,7 +122,7 @@ function resultMessage(message: string) {
 document.addEventListener("DOMContentLoaded", () => {
   const formContainer = document.getElementById("formContainer");
   formContainer?.insertAdjacentHTML(
-    "afterbegin",
+    "beforeend",
     `
     <div id="paymentContainer" class="w-full justify-center flex-col items-center hidden">
         <div class="flex w-full items-start">
@@ -122,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 </svg>
                 <span>back</span>
             </div>
-            <div id="slider" class="w-full text-center"></div>
         </div>
         <div id="paypal-button-container" class="w-3/4"></div>
         <div id="result-message"></div>
@@ -139,5 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const userDetails = document.getElementById("userDetails") as HTMLElement;
     userDetails.classList.remove("hidden");
     userDetails.classList.add("flex");
+    changeStep("1");
   });
 });

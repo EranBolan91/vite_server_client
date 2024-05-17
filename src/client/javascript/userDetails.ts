@@ -1,4 +1,5 @@
 import { IS_PAYMENT_CREATED, insertPaypalPayment } from "./paypal";
+import { changeStep } from "./slider";
 
 const REQUIRED = "This field is required";
 
@@ -17,7 +18,7 @@ const removeMessageRequired = (elementID: string) => {
 document.addEventListener("DOMContentLoaded", async () => {
   const formContainer = document.getElementById("formContainer");
   formContainer?.insertAdjacentHTML(
-    "afterbegin",
+    "beforeend",
     `<div
         id="userDetails"
         class="w-full hidden justify-center flex-col items-center">
@@ -28,10 +29,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </svg>
                 <span>back</span>
             </div>
-            <div id="slider" class="w-full text-center"></div>
         </div>
         <div class="w-full flex flex-col justify-center items-center">
-            <div id="donationTitle" style="border-radius:8px;" class="badge badge-primary badge-sm md:badge-lg text-sm font-bold p-3 md:p-5 w-56 md:w-96"></div>
+            <div style="border-radius:8px;" class="flex badge badge-primary badge-sm md:badge-lg text-sm font-bold p-3 md:p-5 w-56 md:w-96">
+              <div class="flex w-full md:w-1/2 justify-evenly">
+                <div class="heart">&#x2665;</div>
+                <span id="donationTitle"> </span>
+              </div>
+            </div>
             <h3 class="text-black font-bold text-xl md:text-2xl text-center my-4"> YOUR DETAILS </h3>
             <div class="flex flex-col w-full px-3 md:px-10">
                 <input id="firstName" type="text" placeholder="First Name" class="input input-bordered input-sm md:input-md w-full my-2"/>
@@ -58,6 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const donateStage = document.getElementById("donateStage") as HTMLElement;
     donateStage.classList.remove("hidden");
     donateStage.classList.add("flex");
+    changeStep("0");
   });
 
   document.getElementById("nextToPayment")?.addEventListener("click", () => {
@@ -101,6 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (IS_PAYMENT_CREATED === false) {
         insertPaypalPayment();
       }
+      changeStep("2");
     }
   });
 });
